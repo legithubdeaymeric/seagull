@@ -1,121 +1,133 @@
 
-<!-- The home page -->
-<div>
+<!-- The containers page, refer to static/js/controller -->
+<div id="view-containers">
 
-  <!-- Alert if we get nothing from server -->
-  <div ng-show="!version || !info" class="alert alert-danger" role="alert">{{'error_to_load_data_from_docker_daemon_please_check_seagull_and_configuration'|translate}}</div>
+  <span class="page-header">
+    <!-- Display containers title and the JSON link -->
+    <h1 class="page-header-left">{{'containers'|translate}} <a ng-href="{{canonicalServer}}/containers/json?all=1" target="_blank"><img src="static/img/json-logo.png" height="32"></a></h1>
 
-  <!-- Display a bootstrap-style jumbotron to display the basic info of docker -->
-  <div class="jumbotron">
-    <!-- Example: Seagull the best friend of docker -->
-    <h1>{{'seagull'|translate}} <small>{{'the_best_friend_of_docker'|translate}}</small></h1>
+      <!-- Display search form in the right -->
+      <!--<div class="page-header-right">
+       <input type="text" class="form-control search" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
+     </div>-->
 
-    <!-- Example: I'm using linux with kernel 3.11.0-12-generic, go1.2.1 and Docker 1.1.2. The docker daemon has 26 running/stopped containers and 359 images now. Docker is an open platform for distributed application for developers and sysadmins. And seagull provides a friendly Web UI to monitor docker. -->
-    <h3>
-      {{'im_using'|translate}} <i>{{Os}}</i> {{'with_kernel'|translate}} <i>{{KernelVersion}}</i>, <i>{{GoVersion}}</i> {{'and_docker'|translate}} <i>{{Version}}</i>{{'period'|translate}} {{'the_docker_daemon_has'|translate}} <i>{{Containers}}</i> {{'running_stopped_containers_and'|translate}} <i>{{Images}}</i> {{'images_now'|translate}}{{'period'|translate}}
-      {{'docker_is_an_open_platform_for_distributed_application_for_developers_and_sysadmins'|translate}},
-      {{'and_seagull_provides_a_friendly_web_ui_to_monitor_docker'|translate}}
-    </h3>
-  </div>
+      <!-- Display filter button in the right -->
+      <!-- <div class="page-header-right btn-group filter-button">
+         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+           {{'filter'|translate}}: {{currentFilterString}} <span class="caret"></span>
+         </button>
+         <ul class="dropdown-menu" role="menu">
+           <li ng-show="!isAllContainers"><a href="" ng-click="getAllContainers()">{{'all'|translate}}</a></li>
+           <li ng-show="isAllContainers"><a href="" ng-click="getRunningContainers()">{{'running'|translate}}</a></li>
+         </ul>
+       </div>-->
 
-  <!-- Display four section with text and image of containers page, images page, configuration page and github page -->
-  <div class="row text-center">
-    <div class="col-md-3 col-sm-6 hero-feature">
-        <div class="thumbnail">
-            <img src="static/img/containers-page.png" alt="" data-toggle="modal" data-target="#popupContainers">
-            <div class="caption">
-                <h3>{{'containers'|translate}}</h3>
-                <!-- Example: Containers page display all running and stopped docker containers. -->
-                <p>{{'containers_page_display_all_running_and_stopped_docker_containers'|translate}}</p>
-                <p>
-                    <a href="/containers" class="btn btn-primary">{{'go_now'|translate}}</a> <a href="https://github.com/tobegit3hub/seagull/blob/master/docs/en/user_guide/seagull-containers-page.md" target="_blank" class="btn btn-default">{{'learn_more'|translate}}</a>
-                </p>
+   </span> <!-- End of page header -->
+
+    <!-- Todo: No need to use <br/> -->
+    <br/><br/><br/><br/>
+
+    <!-- Alert if we get nothing from server -->
+    <!-- A<div ng-show="!containers.length" class="alert alert-danger" role="alert">{{'no_docker_container'|translate}}</div>-->
+    <div class="row bloc-cms magento1">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <div class="col-md-5 bloc-title">
+            <img width="481" height="200" src="static/img/magento.png" class="attachment-full size-full">
+        </div>
+        <div class="col-md-3 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+            <h2>{{container.Labels['com.hipay.github']}}</h2>
+            <div class="" title="{{container.Names | array_to_string}}">http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+
+            <div class="action-container row">
+                <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+                <div class="" title="{{container.Status}}">{{container.Status}}</div>
+                <!-- If the container is running, display stop button -->
+                <div ng-show="checkRunning(container)"><button class="btn btn-warning col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+                <!-- Else display start button -->
+                <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+                    <!-- If the container is running, display nothing -->
+                    <span ng-show="checkRunning(container)"></span>
+                    <!-- Else display delete button -->
+                    <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3 col-sm-6 hero-feature">
-        <div class="thumbnail">
-            <img src="static/img/images-page.png" alt="" data-toggle="modal" data-target="#popupImages">
-            <div class="caption">
-                <h3>{{'images'|translate}}</h3>
-                <!-- Example: Images page display all docker images to start, stop and delete. -->
-                <p>{{'images_page_display_all_docker_images_to_start_stop_and_delete'|translate}}</p>
-                <p>
-                    <a href="/images" class="btn btn-primary">{{'go_now'|translate}}</a> <a href="https://github.com/tobegit3hub/seagull/blob/master/docs/en/user_guide/seagull-images-page.md" target="_blank" class="btn btn-default">{{'learn_more'|translate}}</a>
-                </p>
+    <div class="row bloc-cms magento2">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <div class="col-md-5 bloc-title">
+            <img width="481" height="200" src="static/img/magento.png" class="attachment-full size-full">
+        </div>
+        <div class="col-md-3 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg2-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+            <h2>{{container.Labels['com.hipay.github']}}</h2>
+            <div class="" title="{{container.Names | array_to_string}}">http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+
+            <div class="action-container row">
+                <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+                <div class="" title="{{container.Status}}">{{container.Status}}</div>
+                <!-- If the container is running, display stop button -->
+                <div ng-show="checkRunning(container)"><button class="btn btn-warning col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+                <!-- Else display start button -->
+                <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+                    <!-- If the container is running, display nothing -->
+                    <span ng-show="checkRunning(container)"></span>
+                    <!-- Else display delete button -->
+                    <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3 col-sm-6 hero-feature">
-        <div class="thumbnail">
-            <img src="static/img/configuration-page.png" alt="" data-toggle="modal" data-target="#popupConfiguration">
-            <div class="caption">
-                <h3>{{'configuration'|translate}}</h3>
-                <!-- Example: Configuration page display all your docker environment and settings. -->
-                <p>{{'configuration_page_display_all_your_docker_environment_and_settings'|translate}}</p>
-                <p>
-                    <a href="/configuration" class="btn btn-primary">{{'go_now'|translate}}</a> <a href="https://github.com/tobegit3hub/seagull/blob/master/docs/en/user_guide/seagull-configuration-page.md" target="_blank" class="btn btn-default">{{'learn_more'|translate}}</a>
-                </p>
+    <div class="row bloc-cms prestashop-enterprise">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <div class="col-md-5 bloc-title">
+            <img width="481" height="200" src="static/img/prestashop.png" class="attachment-full size-full">
+        </div>
+        <div class="col-md-3 bloc-container" ng-repeat="container in containers  | filter : '-ps' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+            <h2>{{container.Labels['com.hipay.github']}}</h2>
+            <div class="" title="{{container.Names | array_to_string}}">http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+
+            <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+            <div class="action-container col-md-11">
+                <div class="" title="{{container.Status}}">{{container.Status}}</div>
+                <!-- If the container is running, display stop button -->
+                <div ng-show="checkRunning(container)"><button class="btn btn-danger col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+                <!-- Else display start button -->
+                <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+                    <!-- If the container is running, display nothing -->
+                    <span ng-show="checkRunning(container)"></span>
+                    <!-- Else display delete button -->
+                    <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3 col-sm-6 hero-feature">
-        <div class="thumbnail">
-            <img src="static/img/github-page.png" alt="" data-toggle="modal" data-target="#popupGithub">
-            <div class="caption">
-                <h3>{{'github'|translate}}</h3>
-                <!-- Example: Seagull is open source in Github. Welcome to contribution and issues. -->
-                <p>{{'seagull_is_open_source_in_Github_welcome_to_contribution_and_issues'|translate}}</p>
-                <p>
-                    <a href="https://github.com/tobegit3hub/seagull" class="btn btn-primary">{{'go_now'|translate}}</a> <a href="https://github.com/tobegit3hub/seagull/blob/master/docs/en/development/seagull-design-and-implement.md" target="_blank" class="btn btn-default">{{'learn_more'|translate}}</a>
-                </p>
+    <div class="row bloc-cms mirakl">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <div class="col-md-5 bloc-title">
+            <img width="481" height="200" src="static/img/mirakl.png" class="attachment-full size-full">
+        </div>
+        <div class="col-md-3 bloc-container" ng-repeat="container in containers  | filter : 'jira-mirakl' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+            <h2>{{container.Labels['com.hipay.github']}}</h2>
+            <div class="" title="{{container.Names | array_to_string}}">http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+
+            <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+            <div class="action-container col-md-11">
+                <div class="" title="{{container.Status}}">{{container.Status}}</div>
+                <!-- If the container is running, display stop button -->
+                <div ng-show="checkRunning(container)"><button class="btn btn-danger col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+                <!-- Else display start button -->
+                <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+                    <!-- If the container is running, display nothing -->
+                    <span ng-show="checkRunning(container)"></span>
+                    <!-- Else display delete button -->
+                    <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+                </div>
             </div>
         </div>
     </div>
-  </div> <!-- End of four sections in a row -->
+
 
 </div> <!-- End of this angular page -->
-
-<!-- The popup larger images when click each page's image, refer to static/js/style.js for the effect -->
-<div id="popupContainers" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-body">
-            <img src="static/img/containers-page.png" class="img-responsive">
-        </div>
-    </div>
-  </div>
-</div>
-
-<div id="popupImages" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-body">
-            <img src="static/img/images-page.png" class="img-responsive">
-        </div>
-    </div>
-  </div>
-</div>
-
-<div id="popupConfiguration" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-body">
-            <img src="static/img/configuration-page.png" class="img-responsive">
-        </div>
-    </div>
-  </div>
-</div>
-
-<div id="popupGithub" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-body">
-            <img src="static/img/github-page.png" class="img-responsive">
-        </div>
-    </div>
-  </div>
-</div>

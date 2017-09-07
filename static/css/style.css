@@ -59,3 +59,49 @@
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+#view-containers .bloc-cms {
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#view-containers .bloc-cms a {
+    display : block;
+    height: 100%;
+    width: 100%;
+    position:absolute;
+}
+
+#view-containers .bloc-cms.prestashop-enterprise {
+    border:solid #de016e 1px;
+}
+
+#view-containers .bloc-cms.magento1, #view-containers .bloc-cms.magento2 {
+    border:solid #f57b20 1px;
+}
+
+#view-containers .bloc-cms.mirakl {
+    border:solid #163f6b 1px;
+}
+
+#view-containers .bloc-container {
+    min-height: 200px;
+    background-color: rgba(44, 62, 80,0.1);
+    margin: 10px;
+    border-radius: 15px;
+}
+
+#view-containers .bloc-container:hover {
+    background-color: rgba(44, 62, 80,0.2);
+    cursor : pointer;
+}
+
+#view-containers .bloc-title {
+    padding-left: 0;
+}
+
+#view-containers .action-container {
+    position:absolute;
+    bottom:0px;
+    margin-bottom: 10px;
+}

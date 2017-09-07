@@ -49,21 +49,35 @@ seagull.config(['$locationProvider', '$routeProvider',
     /* Set router, all in /js/controllers.js */
     $routeProvider.
       when('/', {
-        templateUrl: '/static/html/home.html',
-        controller: 'HomeController',
+/*        templateUrl: '/static/html/home.html',
+        controller: 'ContainersController',
         resolve: {
           version: function($rootScope, $http) {
-            /* Get the version object */
+            /!* Get the version object *!/
             return $http.get($rootScope.canonicalServer + '/version').then(function(response) {
               return response.data;
             });
           },
           info: function($rootScope, $http) {
-            /* Get the info object */
+            /!* Get the info object *!/
             return $http.get($rootScope.canonicalServer + '/info').then(function(response) {
               return response.data;
             });
           }
+        }*/
+        templateUrl: '/static/html/containers.html',
+        controller: 'ContainersController',
+        resolve: {
+            allContainers: function($rootScope, $http) {
+                return $http.get($rootScope.canonicalServer + '/containers/json?all=1').then(function(response) {
+                    return response.data;
+                });
+            },
+            runningContainers: function($rootScope, $http) {
+                return $http.get($rootScope.canonicalServer + '/containers/json?all=0').then(function(response) {
+                    return response.data;
+                });
+            }
         }
       }).
       when('/containers', {
@@ -228,7 +242,7 @@ seagull.controller('IndexController', function ($scope, $rootScope, $translate, 
   if ($cookieStore.get("theme")) {
     $scope.theme =  $cookieStore.get("theme")
   } else {
-    $scope.theme =  "bootstrap"
+    $scope.theme =  "flatly"
   }
 
   $scope.changeTheme = function(theme) {

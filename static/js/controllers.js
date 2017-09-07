@@ -60,7 +60,7 @@ seagullControllers.controller('ContainersController',
 
   /* For the first time, display all containers by default */
   if (typeof $cookies.isAllContainers === "undefined") {
-    $cookies.isAllContainers = "true"; // Only string data in cookies
+    $cookies.isAllContainers = "false"; // Only string data in cookies
   }
 
   /* Check cookies and get all or running container objects */
