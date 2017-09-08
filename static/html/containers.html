@@ -2,6 +2,7 @@
 <!-- The containers page, refer to static/js/controller -->
 <div id="view-containers">
   <span class="page-header">
+    <div>Welcome to the HiPay portal dedicated to continuous deployment.</div>
     <!-- Display containers title and the JSON link -->
     <h1 class="page-header-left">{{'containers'|translate}} <a ng-href="{{canonicalServer}}/containers/json?all=1" target="_blank"><img src="static/img/json-logo.png" height="32"></a></h1>
 
@@ -32,22 +33,24 @@
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/magento.png" class="attachment-full size-full">
     </div>
-    <div class="col-md-3 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-      <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
-      <h2>{{container.Labels['com.hipay.github']}}</h2>
-      <div class="" title="{{container.Names | array_to_string}}">http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+    <div class="col-md-7">
+      <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <h2>{{container.Labels['com.hipay.github']}}</h2>
+        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
 
-      <div class="action-container row">
-        <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
-        <div class="" title="{{container.Status}}">{{container.Status}}</div>
-        <!-- If the container is running, display stop button -->
-        <div ng-show="checkRunning(container)"><button class="btn btn-warning col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
-        <!-- Else display start button -->
-        <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
-          <!-- If the container is running, display nothing -->
-          <span ng-show="checkRunning(container)"></span>
-          <!-- Else display delete button -->
-          <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+        <div class="action-container col-md-11">
+          <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+          <div class="" title="{{container.Status}}">{{container.Status}}</div>
+          <!-- If the container is running, display stop button -->
+          <div ng-show="checkRunning(container)"><button class="btn btn-warning col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+          <!-- Else display start button -->
+          <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+            <!-- If the container is running, display nothing -->
+            <span ng-show="checkRunning(container)"></span>
+            <!-- Else display delete button -->
+            <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+          </div>
         </div>
       </div>
     </div>
@@ -57,23 +60,26 @@
 
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/magento.png" class="attachment-full size-full">
+      <div class="version-module">2</div>
     </div>
-    <div class="col-md-3 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg2-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-      <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
-      <h2>{{container.Labels['com.hipay.github']}}</h2>
-      <div class="" title="{{container.Names | array_to_string}}">http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+    <div class="col-md-7">
+      <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg2-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <h2>{{container.Labels['com.hipay.github']}}</h2>
+        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
 
-      <div class="action-container row">
-        <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
-        <div class="" title="{{container.Status}}">{{container.Status}}</div>
-        <!-- If the container is running, display stop button -->
-        <div ng-show="checkRunning(container)"><button class="btn btn-warning col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
-        <!-- Else display start button -->
-        <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
-          <!-- If the container is running, display nothing -->
-          <span ng-show="checkRunning(container)"></span>
-          <!-- Else display delete button -->
-          <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+        <div class="action-container col-md-11">
+          <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+          <div class="" title="{{container.Status}}">{{container.Status}}</div>
+          <!-- If the container is running, display stop button -->
+          <div ng-show="checkRunning(container)"><button class="btn btn-warning col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+          <!-- Else display start button -->
+          <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+            <!-- If the container is running, display nothing -->
+            <span ng-show="checkRunning(container)"></span>
+            <!-- Else display delete button -->
+            <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+          </div>
         </div>
       </div>
     </div>
@@ -83,15 +89,47 @@
     <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/prestashop.png" class="attachment-full size-full">
+      <div class="version-module">Enterprise</div>
     </div>
-    <div class="col-md-3 bloc-container" ng-repeat="container in containers  | filter : '-ps' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-      <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
-      <h2>{{container.Labels['com.hipay.github']}}</h2>
-      <div class="" title="{{container.Names | array_to_string}}">http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+    <div class="col-md-7">
+      <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : '-ps1'  | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <h2>{{container.Labels['com.hipay.github']}}</h2>
+        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
 
-      <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
-      <div class="action-container col-md-11">
-        <div class="" title="{{container.Status}}">{{container.Status}}</div>
+        <div class="bloc-jira"><a href="" class="link-jira" title="Open Jira"></a></div>
+        <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+        <div class="action-container col-md-11">
+          <div class="" title="{{container.Status}}">{{container.Status}}</div>
+            <!-- If the container is running, display stop button -->
+            <div ng-show="checkRunning(container)"><button class="btn btn-danger col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+            <!-- Else display start button -->
+            <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+              <!-- If the container is running, display nothing -->
+              <span ng-show="checkRunning(container)"></span>
+              <!-- Else display delete button -->
+              <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row bloc-cms prestashop-enterprise">
+    <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+    <div class="col-md-5 bloc-title">
+      <img width="481" height="200" src="static/img/prestashop.png" class="attachment-full size-full">
+      <div class="version-module">Fullservice</div>
+    </div>
+    <div class="col-md-7">
+      <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-fullservice' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <h2>{{container.Labels['com.hipay.github']}}</h2>
+        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+
+        <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+        <div class="action-container col-md-11">
+          <div class="" title="{{container.Status}}">{{container.Status}}</div>
           <!-- If the container is running, display stop button -->
           <div ng-show="checkRunning(container)"><button class="btn btn-danger col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
           <!-- Else display start button -->
@@ -101,6 +139,7 @@
             <!-- Else display delete button -->
             <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -110,21 +149,53 @@
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/mirakl.png" class="attachment-full size-full">
     </div>
-    <div class="col-md-3 bloc-container" ng-repeat="container in containers  | filter : 'jira-mirakl' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-      <h2>{{container.Labels['com.hipay.github']}}</h2>
-      <div class="" title="{{container.Names | array_to_string}}">http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+    <div class="col-md-7">
+      <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mirakl' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+        <h2>{{container.Labels['com.hipay.github']}}</h2>
+        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label>http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
 
-      <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
-      <div class="action-container col-md-11">
-        <div class="" title="{{container.Status}}">{{container.Status}}</div>
-        <!-- If the container is running, display stop button -->
-        <div ng-show="checkRunning(container)"><button class="btn btn-danger col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
-        <!-- Else display start button -->
-        <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
-          <!-- If the container is running, display nothing -->
-          <span ng-show="checkRunning(container)"></span>
-          <!-- Else display delete button -->
-          <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+        <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+        <div class="action-container col-md-11">
+          <div class="" title="{{container.Status}}">{{container.Status}}</div>
+          <!-- If the container is running, display stop button -->
+          <div ng-show="checkRunning(container)"><button class="btn btn-danger col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+          <!-- Else display start button -->
+          <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+            <!-- If the container is running, display nothing -->
+            <span ng-show="checkRunning(container)"></span>
+            <!-- Else display delete button -->
+            <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row bloc-cms prestashop-enterprise">
+    <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+    <div class="col-md-5 bloc-title">
+      <img width="481" height="200" src="static/img/prestashop.png" class="attachment-full size-full">
+      <div class="version-module">Professional</div>
+    </div>
+    <div class="col-md-7">
+      <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : '-pro1' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
+        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+        <h2>{{container.Labels['com.hipay.github']}}</h2>
+        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+
+        <div class="bloc-jira"><a href="" class="link-jira" title="Open Jira"></a></div>
+        <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+        <div class="action-container col-md-11">
+          <div class="" title="{{container.Status}}">{{container.Status}}</div>
+          <!-- If the container is running, display stop button -->
+          <div ng-show="checkRunning(container)"><button class="btn btn-danger col-md-12" ng-click="stopContainer(container.Id)">{{'stop'|translate}}</button></div>
+          <!-- Else display start button -->
+          <div ng-show="!checkRunning(container)"><button class="btn btn-success col-md-12" ng-click="startContainer(container.Id)">{{'start'|translate}}</button>
+            <!-- If the container is running, display nothing -->
+            <span ng-show="checkRunning(container)"></span>
+            <!-- Else display delete button -->
+            <span ng-show="!checkRunning(container)">&nbsp;&nbsp;<button class="btn btn-danger col-md-12" ng-click="deleteContainer(container.Id)">{{'delete'|translate}}</button></span>
+          </div>
         </div>
       </div>
     </div>

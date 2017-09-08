@@ -1,9 +1,8 @@
 version: '2'
-
 services:
   seagull:
     restart: always
-    image: tobegit3hub/seagull
+    image: aberthelot/seagull:1.0.1
     ports:
       - "10086:10086"
     volumes:
