@@ -104,14 +104,33 @@ seagullControllers.controller('ContainersController',
     };
   };
 
-  /* Build internal link to JIRA */
-  $scope.buildLinkJIRA = function(container) {
-    var linkJIRA = "";
-    if (container.Labels['com.hipay.github'] && container.Labels['com.hipay.github'].startsWith("feature")) {
-        linkJIRA = "https://jira.hipay.org/browse/" + container.Labels['com.hipay.github'].substr(8);
-    }
-    return linkJIRA;
-  };
+    /* Build internal link to JIRA */
+    $scope.buildLinkJIRA = function(container) {
+      var linkJIRA = "";
+      if (container.Labels['com.hipay.github'] && container.Labels['com.hipay.github'].contains("feature")) {
+          linkJIRA = "https://jira.hipay.org/browse/" + container.Labels['com.hipay.github'].substr(container.Labels['com.hipay.github'].indexOf("feature"));
+      }
+      return linkJIRA;
+    };
+
+    $scope.buildLinkGitHub = function(container) {
+        var linkGithub = "";
+        if (container.Labels['com.hipay.github']) {
+            linkGithub = container.Labels['com.hipay.github'];
+        }
+
+        return linkGithub;
+    };
+
+
+    /* Build internal link to JIRA */
+    $scope.buildLinkCircle = function(container) {
+        var linkCircle = "";
+        if (container.Labels['com.hipay.circleci']) {
+            linkCircle = container.Labels['com.hipay.circleci'];
+        }
+        return linkCircle;
+    };
 
   /* Determine if the container is running */
   $scope.checkRunning = function(container) {

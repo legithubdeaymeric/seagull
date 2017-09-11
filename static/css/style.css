@@ -79,6 +79,7 @@
     font-weight: 600;
     margin: 10px;
     padding: 15px;
+    font-size: 20px;
 }
 
 #view-containers .bloc-cms.prestashop-enterprise,#view-containers .bloc-cms.prestashop-enterprise button {
@@ -95,6 +96,7 @@
 
 #view-containers .bloc-cms.mirakl button {
     background-color: #163f6b!important;
+    border-bottom-color: #163f6b!important;
 }
 
 #view-containers .bloc-cms.magento1, #view-containers .bloc-cms.magento2 {
@@ -106,7 +108,7 @@
 }
 
 #view-containers .bloc-container {
-    min-height: 250px;
+    min-height: 350px;
     background-color: rgba(44, 62, 80,0.1);
     margin: 10px;
     border-radius: 15px;
@@ -115,7 +117,6 @@
 
 #view-containers .bloc-container:hover {
     background-color: rgba(44, 62, 80,0.2);
-    cursor : pointer;
 }
 
 #view-containers .bloc-title {
@@ -141,9 +142,42 @@
 #view-containers .link-jira {
     background: url("../img/JIRA_logo.svg.png") no-repeat;
     background-size: contain;
-    display: block;
+    display: inline-block;
     width: 100px;
     height: 50px;
 }
+
+#view-containers .link-circle {
+    background: url("../img/circle.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    width: 100px;
+    height: 20px;
+}
+#view-containers .link-github {
+    background: url("../img/github.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+}
+
+#view-containers .bloc-jira,#view-containers .bloc-circle,#view-containers .bloc-github {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#view-containers .link-jira:hover,#view-containers .link-circle:hover,#view-containers .link-github:hover {
+    cursor : pointer;
+    transform:scale(1.2);
+}
+
+.external-links{
+    height: 50px;
+    position:absolute;
+    bottom:150px
+}
+
 
 
