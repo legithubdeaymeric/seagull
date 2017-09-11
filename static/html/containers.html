@@ -35,9 +35,8 @@
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
         <h2>{{container.Labels['com.hipay.github']}}</h2>
-        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label>   <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
 
         <div class="action-container col-md-11">
           <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
@@ -64,9 +63,8 @@
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg2-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
         <h2>{{container.Labels['com.hipay.github']}}</h2>
-        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
 
         <div class="action-container col-md-11">
           <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
@@ -93,12 +91,12 @@
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : '-ps1'  | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
         <h2>{{container.Labels['com.hipay.github']}}</h2>
-        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
 
-        <div class="bloc-jira"><a href="" class="link-jira" title="Open Jira"></a></div>
-        <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
+        <div class="bloc-jira" ng-show="buildLinkJIRA(container)"><a href="{{buildLinkJIRA(container)}}" class="link-jira" title="Open Jira"></a></div>
+
+          <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
         <div class="action-container col-md-11">
           <div class="" title="{{container.Status}}">{{container.Status}}</div>
             <!-- If the container is running, display stop button -->
@@ -123,9 +121,8 @@
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-fullservice' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
         <h2>{{container.Labels['com.hipay.github']}}</h2>
-        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
 
         <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
         <div class="action-container col-md-11">
@@ -145,14 +142,13 @@
   </div>
 
   <div class="row bloc-cms mirakl">
-    <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/mirakl.png" class="attachment-full size-full">
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mirakl' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
         <h2>{{container.Labels['com.hipay.github']}}</h2>
-        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label>http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank">http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
 
         <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->
         <div class="action-container col-md-11">
@@ -172,16 +168,15 @@
   </div>
 
   <div class="row bloc-cms prestashop-enterprise">
-    <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
+    </a>
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/prestashop.png" class="attachment-full size-full">
       <div class="version-module">Professional</div>
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : '-pro1' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
-        <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"></a>
         <h2>{{container.Labels['com.hipay.github']}}</h2>
-        <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> http:/{{container.Names | array_to_string}}</div> <!-- Add comma between names -->
+          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
 
         <div class="bloc-jira"><a href="" class="link-jira" title="Open Jira"></a></div>
         <!-- Not print this now, <td>{{container.Created * 1000 | date:'yyyy-MM-dd'}}</td>  Full time with 'yyyy-MM-dd HH:mm:ss Z' -->

@@ -104,6 +104,15 @@ seagullControllers.controller('ContainersController',
     };
   };
 
+  /* Build internal link to JIRA */
+  $scope.buildLinkJIRA = function(container) {
+    var linkJIRA = "";
+    if (container.Labels['com.hipay.github'] && container.Labels['com.hipay.github'].startsWith("feature")) {
+        linkJIRA = "https://jira.hipay.org/browse/" + container.Labels['com.hipay.github'].substr(8);
+    }
+    return linkJIRA;
+  };
+
   /* Determine if the container is running */
   $scope.checkRunning = function(container) {
     if (container.Status.startsWith("Up")) {
