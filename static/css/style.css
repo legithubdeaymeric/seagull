@@ -152,7 +152,8 @@
     background-size: contain;
     display: inline-block;
     width: 100px;
-    height: 20px;
+    height: 50px;
+    margin-top: 5px;
 }
 #view-containers .link-github {
     background: url("../img/github.png") no-repeat;

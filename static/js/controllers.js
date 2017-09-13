@@ -104,23 +104,41 @@ seagullControllers.controller('ContainersController',
     };
   };
 
-    /* Build internal link to JIRA */
-    $scope.buildLinkJIRA = function(container) {
-      var linkJIRA = "";
-      if (container.Labels['com.hipay.github'] && container.Labels['com.hipay.github'].contains("feature")) {
-          linkJIRA = "https://jira.hipay.org/browse/" + container.Labels['com.hipay.github'].substr(container.Labels['com.hipay.github'].indexOf("feature"));
+  $scope.buildTitle = function(container) {
+      var title = "";
+      var label=container.Labels['com.hipay.github'];
+      if (label && label.indexOf("tree") != -1 ) {
+          title = container.Labels['com.hipay.github'].substr(container.Labels['com.hipay.github'].indexOf("tree") + 5);
       }
-      return linkJIRA;
-    };
+      return title;
+  };
 
-    $scope.buildLinkGitHub = function(container) {
-        var linkGithub = "";
-        if (container.Labels['com.hipay.github']) {
-            linkGithub = container.Labels['com.hipay.github'];
-        }
+  $scope.showLinkJira = function(container) {
+      var label=container.Labels['com.hipay.github'];
+      if (label && label.indexOf("feature") != -1) {
+        return true;
+      }
+      return false;
+  };
 
-        return linkGithub;
-    };
+  /* Build internal link to JIRA */
+  $scope.buildLinkJIRA = function(container) {
+    var linkJIRA = "";
+    var label=container.Labels['com.hipay.github'];
+    if (label && label.indexOf("feature") != -1) {
+        linkJIRA = "https://jira.hipay.org/browse/" + container.Labels['com.hipay.github'].substr(container.Labels['com.hipay.github'].indexOf("feature"));
+    }
+    return linkJIRA;
+  };
+
+  $scope.buildLinkGitHub = function(container) {
+      var linkGithub = "";
+      if (container.Labels['com.hipay.github']) {
+          linkGithub = container.Labels['com.hipay.github'];
+      }
+
+      return linkGithub;
+  };
 
 
     /* Build internal link to JIRA */
