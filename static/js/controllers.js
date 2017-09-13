@@ -126,7 +126,7 @@ seagullControllers.controller('ContainersController',
     var linkJIRA = "";
     var label=container.Labels['com.hipay.github'];
     if (label && label.indexOf("feature") != -1) {
-        linkJIRA = "https://jira.hipay.org/browse/" + container.Labels['com.hipay.github'].substr(container.Labels['com.hipay.github'].indexOf("feature"));
+        linkJIRA = "https://jira.hipay.org/browse/" + container.Labels['com.hipay.github'].substr(container.Labels['com.hipay.github'].indexOf("feature") + 8);
     }
     return linkJIRA;
   };
