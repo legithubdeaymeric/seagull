@@ -104,6 +104,11 @@ seagullControllers.controller('ContainersController',
     };
   };
 
+  $scope.buildLinkMailCatcher = function(names,prefix) {
+      var link=names.toString();
+      return "http://" + link.replace(prefix,'smtp-' + prefix);
+  };
+
   $scope.buildTitle = function(container) {
       var title = "";
       var label=container.Labels['com.hipay.github'];

@@ -32,11 +32,16 @@
   <div class="row bloc-cms magento1">
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/magento.png" class="attachment-full size-full">
+      <div class="version-module">1</div>
+      <div class="admin">hipay/hipay123</div>
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
         <h2>{{buildTitle(container)}}</h2>
-          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label>   <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
+          <div class="link-container link-front" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank">FRONT</a></div>
+          <div class="link-container link-admin" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}/admin" title="Open Containers" target="_blank">ADMIN</a></div>
+
+          <div class="link-container link-mailcatcher" title="{{container.Names | array_to_string}}"><a href="{{buildLinkMailCatcher(container.Names,'mg')}}" title="Open Mail catcher" target="_blank">MAIL CATCHER</a></div>
 
           <div class="external-links">
               <div class="bloc-github col-md-6"><a href="{{buildLinkGitHub(container)}}" class="link-github" target="_blank" title="Open on Github"></a></div>
@@ -66,11 +71,14 @@
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/magento.png" class="attachment-full size-full">
       <div class="version-module">2</div>
+      <div class="admin">admin/admin123</div>
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mg2-' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
         <h2>{{buildTitle(container)}}</h2>
-          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
+          <div class="link-container link-front" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank">FRONT</a></div>
+          <div class="link-container link-admin" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}/admin" title="Open Containers" target="_blank">ADMIN</a></div>
+          <div class="link-container link-mailcatcher" title="{{container.Names | array_to_string}}"><a href="{{buildLinkMailCatcher(container.Names,'mg2')}}" title="Open Mail catcher" target="_blank">MAIL CATCHER</a></div>
 
           <div class="external-links">
               <div class="bloc-github col-md-6"><a href="{{buildLinkGitHub(container)}}" class="link-github" target="_blank" title="Open on Github"></a></div>
@@ -101,11 +109,14 @@
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/prestashop.png" class="attachment-full size-full">
       <div class="version-module">Enterprise</div>
+      <div class="admin">demo@hipay.com/hipay123</div>
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : '-ps1'  | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
         <h2>{{buildTitle(container)}}</h2>
-          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
+          <div class="link-container link-front" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank">FRONT</a></div>
+          <div class="link-container link-admin" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}/admin-hipay" title="Open Containers" target="_blank">ADMIN</a></div>
+          <div class="link-container link-mailcatcher" title="{{container.Names | array_to_string}}"><a href="{{buildLinkMailCatcher(container.Names,'ps16')}}" title="Open Mail catcher" target="_blank">MAIL CATCHER</a></div>
 
           <div class="external-links">
               <div class="bloc-github col-md-6"><a href="{{buildLinkGitHub(container)}}" class="link-github" target="_blank" title="Open on Github"></a></div>
@@ -135,11 +146,14 @@
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/prestashop.png" class="attachment-full size-full">
       <div class="version-module">Fullservice</div>
+      <div class="admin">demo@hipay.com/hipay123</div>
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-fullservice' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
         <h2>{{buildTitle(container)}}</h2>
-          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label> <a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
+          <div class="link-container link-front" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank">FRONT</a></div> <!-- Add comma between names -->
+          <div class="link-container link-admin" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}/admin-hipay" title="Open Containers" target="_blank">ADMIN</a></div>
+          <div class="link-container link-mailcatcher" title="{{container.Names | array_to_string}}"><a href="{{buildLinkMailCatcher(container.Names,'fullservice')}}" title="Open Mail catcher" target="_blank">MAIL CATCHER</a></div>
 
           <div class="external-links">
               <div class="bloc-github col-md-6"><a href="{{buildLinkGitHub(container)}}" class="link-github" target="_blank" title="Open on Github"></a></div>
@@ -167,11 +181,12 @@
   <div class="row bloc-cms mirakl">
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/mirakl.png" class="attachment-full size-full">
+
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : 'jira-mirakl' | filter : {Names:'!mysql'} | filter : {Names:'!db'} | filter : {Names:'!smtp'} | orderBy:container.Names">
         <h2>{{buildTitle(container)}}</h2>
-          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank">http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
+          <div class="link-container  link-front" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}/web/index.php" title="Open Containers" target="_blank">FRONT</a></div>
 
           <div class="external-links">
               <div class="bloc-github col-md-6"><a href="{{buildLinkGitHub(container)}}" class="link-github" target="_blank" title="Open on Github"></a></div>
@@ -201,11 +216,13 @@
     <div class="col-md-5 bloc-title">
       <img width="481" height="200" src="static/img/prestashop.png" class="attachment-full size-full">
       <div class="version-module">Professional</div>
+      <div class="admin">demo@hipay.com/hipay123</div>
     </div>
     <div class="col-md-7">
       <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : '-pro1' | filter : {Names:'!mysql'} | filter : {Names:'!smtp'} | orderBy:container.Names">
         <h2>{{buildTitle(container)}}</h2>
-          <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
+          <div class="link-container link-front" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank">FRONT</a></div>
+          <div class="link-container link-mailcatcher" title="{{container.Names | array_to_string}}"><a href="{{buildLinkMailCatcher(container.Names,'pro16')}}" title="Open Mail catcher" target="_blank">MAIL CATCHER</a></div>
 
           <div class="external-links">
               <div class="bloc-github col-md-6"><a href="{{buildLinkGitHub(container)}}" class="link-github" target="_blank" title="Open on Github"></a></div>
@@ -239,7 +256,7 @@
     <div class="col-md-7">
         <div class="col-md-5 bloc-container" ng-repeat="container in containers  | filter : '-devportal' | filter : {Names:'!mysql'} | filter : {Names:'!dp_myadmin'} | orderBy:container.Names">
             <h2>{{buildTitle(container)}}</h2>
-            <div class="" title="{{container.Names | array_to_string}}"><label>URL:</label><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank"> http:/{{container.Names | array_to_string}}</a></div> <!-- Add comma between names -->
+          <div class="link-container link-front" title="{{container.Names | array_to_string}}"><a href="http:/{{container.Names | array_to_string}}" title="Open Containers" target="_blank">FRONT</a></div>
 
             <div class="external-links">
                 <div class="bloc-github col-md-6"><a href="{{buildLinkGitHub(container)}}" class="link-github" target="_blank" title="Open on Github"></a></div>
